@@ -1,13 +1,25 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import '../styles/global.css';
-const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
-const pageTitle = "Assorted Thoughts and Guides";
+import "../styles/global.css";
+const allPosts = Object.values(
+    import.meta.glob("./posts/*.md", { eager: true }),
+);
+const pageTitle = "Blog";
 ---
 
 <Layout pageTitle={pageTitle}>
-    <p>This is where I will post about my journey learning Astro.</p>
+    <p>
+        This blog functions as a repository of my publically published thoughts.
+        You may find some of these posts useful if you're in the world of
+        healthcare software.
+    </p>
     <ul>
-        {allPosts.map((post: any) => <li><a href={post.url}>{post.frontmatter.title}</a></li>)}
+        {
+            allPosts.map((post: any) => (
+                <li>
+                    <a href={post.url}>{post.frontmatter.title}</a>
+                </li>
+            ))
+        }
     </ul>
 </Layout>

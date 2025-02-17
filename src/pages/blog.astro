@@ -1,12 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import '../styles/global.css';
-const pageTitle = "Blog";
+const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
+const pageTitle = "Assorted Thoughts and Guides";
 ---
 
 <Layout pageTitle={pageTitle}>
     <p>This is where I will post about my journey learning Astro.</p>
     <ul>
-        <li><a href="/posts/healthcare-tech-primer/">Healthcare Tech: A Primer</a></li>
+        {allPosts.map((post: any) => <li><a href={post.url}>{post.frontmatter.title}</a></li>)}
     </ul>
 </Layout>
